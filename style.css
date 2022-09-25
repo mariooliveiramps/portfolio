@@ -1,0 +1,64 @@
+html,body{
+    margin: 0;
+}
+
+/*Menu*/
+header{
+    background-color: #030915;
+    color: white;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    z-index: 50;
+}
+
+#menu{
+    float: right;
+    margin-top: 0;
+    margin-right: 28px;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+li{
+    float: left;
+    padding: 18px 18px 22px 18px;
+    transition: 500ms;
+}
+
+li:hover{
+    background-color: #071124ec;
+    transform: scale(1.12);
+}
+
+li a{
+    text-decoration: none;
+    color: white;
+}
+
+/*Capa*/
+#capa{
+    background-color: #001429;
+    background-size: cover;
+    height: 96.8vh;
+    padding: 10px;
+    text-align: justify;
+}
+
+#titulo{
+    color: white;
+    text-shadow: 4px 4px 8px #235564;
+    padding-top: 38vh;
+    padding-left: 14vh;
+    margin-bottom: 0;
+    font-size: 6vh;
+}
+
+#subtitulo{
+    color: white;
+    width: 65vh;
+    text-shadow: 4px 4px 8px #235564;
+    font-size: 5vh;
+    margin-top: 0;
+    border-top: 1px white solid;
+}
