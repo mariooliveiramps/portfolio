@@ -1,24 +1,30 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
 *{
     padding: 0;
     margin: 0;
+    font-family: 'Merriweather', sans-serif;
 }
+
 /*Inicio do Menu*/
 header{
-    background-color: #24252a;
-    box-shadow: 0 3px 10px #464646;
+    background-image:  -webkit-linear-gradient( -45deg, #030915 0%, #001429 25%, #0D2A48 50%, #25495F 75%, #235564 100%);
+    box-shadow: 0 3px 10px #0D2A48;
+    top: 0;
+    position: sticky;
+    width: 100%;
 }
 .nav-bar{
     display: flex;
     justify-content: space-between;
-    padding: 0.2rem 6rem;
+    padding: 0rem 5rem;
 }
 .logo{
     display: flex;
     align-items: center;
 }
-.logo h1{
+.logo a{
     color: #fff;
+    text-decoration: none;
 }
 .nav-list{
     display: flex;
@@ -29,23 +35,63 @@ header{
     justify-content: space-between;
     list-style: none;
 }
-.nav-item{
-    margin: 18px;
+.nav-list .nav-item{
+    padding: 15px;
+}
+.nav-list .nav-item:hover{
+    background-color: #3a536e;
 }
 .nav-link{
     text-decoration: none;
     font-size: 1.15rem;
     color: #fff;
 }
-.mobile-menu-icon{
+.mobile-icon{
     display: none;
 }
-.mobile-menu{
+.mobile{
     display: none;
 }
 /*Fim do Menu*/
 
+/*Inicio Conteudo*/
+section{
+    height: 100vh;
+    font-size: 14px;
+}
+/*Inicio Section capa*/
+.home{
+    width: 100%;
+    text-align: center;
+    color: #030915;
+}
+/*Fim Section capa*/
 
+/*Inicio Section Sobre*/
+.sobre{
+    width: 100%;
+    text-align: center;
+}
+/*Fim Section Sobre*/
+
+/*Inicio Section Portfolio*/
+/*Fim Section Portfolio*/
+
+/*Inicio Section Habilidades*/
+/*Fim Section Habilidades*/
+
+/*Inicio Footer contato*/
+footer{
+    background-image:  -webkit-linear-gradient( -45deg, #030915 0%, #001429 25%, #0D2A48 50%, #25495F 75%, #235564 100%);
+    height: 30vh;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+}
+/*Fim Footer contato*/
+/*Fim do Conteudo*/
+
+/*Mobile*/
 @media screen and (max-width: 880px) {
     /*Inicio Menu Mobile*/
     .nav-bar{
@@ -54,26 +100,38 @@ header{
     .nav-item{
         display: none;
     }
-    .mobile-menu-icon{
+    .mobile-icon{
         display: block;
     }
-    .mobile-menu-icon button{
+    .mobile-icon button{
         background-color: transparent;
         border: none;
         cursor: pointer;
     }
-    .mobile-menu ul{
+    .mobile ul li{
+        margin: 0;
+    }
+    .mobile ul{
         display: flex;
         flex-direction: column;
         text-align: center;
         padding-bottom: 1rem;
     }
-    .mobile-menu .nav-item{
+    .mobile .nav-item{
         display: block;
         padding-top: 1.2rem;
+        padding-bottom: 1.2rem;
+    }
+    .mobile .nav-item:hover{
+        background-color: #0D2A48;
     }
     .open{
         display: block;
     }
     /*Fim do Menu Mobile*/
+}
+@media screen and (max-width: 380px){
+    section{
+        font-size: 10px;
+    }
 }
