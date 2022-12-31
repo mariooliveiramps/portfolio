@@ -79,8 +79,8 @@ section.home{
 
 .bubbles span{
     position: relative;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     background: #0D2A48;
     margin: 0 4px;
     border-radius: 50%;
@@ -166,9 +166,26 @@ footer{
         display: block;
     }
     /*Fim do Menu Mobile*/
+
+    /*Inicio Seção Capa*/
+    .bubbles span{
+        width: 15px;
+        height: 15px;
+        box-shadow: 0 0 0 5px #0D2A4844, 0 0 25px #0D2A48, 0 0 50px #0D2A48;
+    }
+    .bubbles span:nth-child(even){
+        box-shadow: 0 0 0 5px #0D2A4844, 0 0 25px #0D2A48, 0 0 50px #0D2A48;
+    }
+    /*Fim Seção Capa*/
 }
 @media screen and (max-width: 380px){
     section{
         font-size: 10px;
     }
+    /*Inicio Seção Capa*/
+    .bubbles span{
+        width: 20px;
+        height: 20px;
+    }
+    /*Fim Seção Capa*/
 }
