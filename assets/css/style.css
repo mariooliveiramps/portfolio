@@ -5,15 +5,20 @@
     font-family: 'Merriweather', sans-serif;
 }
 
+.row{
+    display: flex;
+    flex-flow: row wrap;
+}
+.col-2{
+    width: 50%;
+}
+.col-3{
+    width: 33.33333333%;
+}
+
 /*Menu*/
 header{
-    background: linear-gradient(120deg, #FF0000 0%, #4f3cc7 100%),
-    linear-gradient(-120deg, #ff0095 0%, #208200 100%),
-    linear-gradient(130deg, #00F0FF 0%, #000000 100%),
-    radial-gradient(110% 140% at 15% 90%, #ffffff 0%, #1700A4 100%),
-    radial-gradient(100% 100% at 50% 0%, #AD00FF 0%, #00FFE0 100%),
-    radial-gradient(100% 100% at 50% 0%, #00FFE0 0%, #7300A9 80%),
-    linear-gradient(30deg, #7ca304 0%, #2200AA 100%);
+    background: linear-gradient(45deg, #000000 0%, #FF0000 25%, #ff006a 50%, #000000 100%);
     background-blend-mode: overlay, color, overlay, difference, color-dodge, difference, normal;
     box-shadow: 0 3px 10px #8b4a70;
     top: 0;
@@ -62,9 +67,35 @@ header{
     display: none;
 }
 
+/*Capa*/
+.capa{
+    height: 91.5vh;
+    padding: 0rem 5rem;
+    color: #fff;
+    text-shadow: 2px 1px rgba(31, 30, 30, 0.863);
+    text-align: center;
+    background: linear-gradient(120deg, #FF0000 0%, #4f3cc7 100%),
+    linear-gradient(-120deg, #ff004c 0%, #208200 100%),
+    linear-gradient(130deg, #00F0FF 0%, #000000 100%),
+    radial-gradient(110% 140% at 15% 90%, #ffffff 0%, #1700A4 100%),
+    radial-gradient(100% 100% at 50% 0%, #AD00FF 0%, #00FFE0 100%),
+    radial-gradient(100% 100% at 50% 0%, #00FFE0 0%, #7300A9 80%),
+    linear-gradient(30deg, #7ca304 0%, #2200AA 100%);
+    background-blend-mode: overlay, color, overlay, difference, color-dodge, difference, normal;
+}
+.nome{
+    margin-top: 15rem;
+}
+.foto{
+    max-width: 15rem;
+    border-radius: 60%;
+    margin-top: 8rem;
+    box-shadow: 3px 5px 10px rgb(170, 145, 145);
+}
+
 /*Mobile*/
-@media screen and (max-width: 880px) {
-    /*Inicio Menu Mobile*/
+@media screen and (max-width: 880px){
+    /*Menu Mobile*/
     .nav-bar{
         padding: 0.2rem 2.5rem;
     }
@@ -99,27 +130,34 @@ header{
     .open{
         display: block;
     }
-    /*Fim do Menu Mobile*/
 
-    /*Inicio Seção Capa*/
-    .bubbles span{
-        width: 15px;
-        height: 15px;
-        box-shadow: 0 0 0 5px #0D2A4844, 0 0 25px #0D2A48, 0 0 50px #0D2A48;
-    }
-    .bubbles span:nth-child(even){
-        box-shadow: 0 0 0 5px #0D2A4844, 0 0 25px #0D2A48, 0 0 50px #0D2A48;
-    }
-    /*Fim Seção Capa*/
 }
-@media screen and (max-width: 380px){
-    section{
-        font-size: 10px;
+@media screen and (max-width: 735px){
+    /*Capa*/
+    .nome{
+        font-size: 27px;
     }
-    /*Inicio Seção Capa*/
-    .bubbles span{
-        width: 20px;
-        height: 20px;
+    .area-profissinal{
+        font-size: 14px;
     }
-    /*Fim Seção Capa*/
+    .foto{
+        max-width: 12rem;
+    }
+}
+@media screen and (max-width: 560px){
+    /*Capa*/
+    .col-2{
+        width: 100%;
+    }
+    .nome{
+        font-size: 22px;
+        margin-top: 2rem;
+    }
+    .area-profissinal{
+        font-size: 13px;
+    }
+    .foto{
+        max-width: 8rem;
+        margin-top: 2rem;
+    }
 }
