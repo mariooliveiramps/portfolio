@@ -5,14 +5,22 @@
     font-family: 'Merriweather', sans-serif;
 }
 
-/*Inicio do Menu*/
+/*Menu*/
 header{
-    background-image:  -webkit-linear-gradient( -45deg, #030915 0%, #001429 25%, #0D2A48 50%, #25495F 75%, #235564 100%);
-    box-shadow: 0 3px 10px #0D2A48;
+    background: linear-gradient(120deg, #FF0000 0%, #4f3cc7 100%),
+    linear-gradient(-120deg, #ff0095 0%, #208200 100%),
+    linear-gradient(130deg, #00F0FF 0%, #000000 100%),
+    radial-gradient(110% 140% at 15% 90%, #ffffff 0%, #1700A4 100%),
+    radial-gradient(100% 100% at 50% 0%, #AD00FF 0%, #00FFE0 100%),
+    radial-gradient(100% 100% at 50% 0%, #00FFE0 0%, #7300A9 80%),
+    linear-gradient(30deg, #7ca304 0%, #2200AA 100%);
+    background-blend-mode: overlay, color, overlay, difference, color-dodge, difference, normal;
+    box-shadow: 0 3px 10px #8b4a70;
     top: 0;
     position: sticky;
     width: 100%;
     z-index: 3;
+    text-shadow: 2px 1px rgba(31, 30, 30, 0.863);
 }
 .nav-bar{
     display: flex;
@@ -40,7 +48,7 @@ header{
     padding: 15px;
 }
 .nav-list .nav-item:hover{
-    background-color: #3a536e;
+    background-color: #8b4a709f;
 }
 .nav-link{
     text-decoration: none;
@@ -53,82 +61,6 @@ header{
 .mobile{
     display: none;
 }
-/*Fim do Menu*/
-
-/*Inicio Conteudo*/
-section{
-    height: 100vh;
-    font-size: 14px;
-}
-/*Inicio Section capa*/
-section.home{
-    height: 100vh;
-    background: -webkit-linear-gradient( -45deg, #030915 0%, #001429 25%, #0D2A48 50%, #25495F 75%, #235564 100%);
-}
-
-.container{
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.bubbles{
-    position: relative;
-    display: flex;
-}
-
-.bubbles span{
-    position: relative;
-    width: 25px;
-    height: 25px;
-    background: #0D2A48;
-    margin: 0 4px;
-    border-radius: 50%;
-    box-shadow: 0 0 0 10px #0D2A4844, 0 0 50px #0D2A48, 0 0 100px #0D2A48;
-    animation: animate 15s linear infinite;
-    animation-duration: calc(60s / var(--i));
-}
-
-.bubbles span:nth-child(even){
-    background: #235564;
-    box-shadow: 0 0 0 10px #23556444, 0 0 50px #235564, 0 0 100px #235564;
-}
-
-@keyframes animate{
-    0%{
-        transform: translateY(100vh) scale(0);
-    }
-    100%{
-        transform: translateY(-10vh) scale(1);
-    }
-}
-/*Fim Section capa*/
-
-/*Inicio Section Sobre*/
-.sobre{
-    width: 100%;
-    text-align: center;
-}
-/*Fim Section Sobre*/
-
-/*Inicio Section Portfolio*/
-/*Fim Section Portfolio*/
-
-/*Inicio Section Habilidades*/
-/*Fim Section Habilidades*/
-
-/*Inicio Footer contato*/
-footer{
-    background-image:  -webkit-linear-gradient( -45deg, #030915 0%, #001429 25%, #0D2A48 50%, #25495F 75%, #235564 100%);
-    height: 30vh;
-    width: 100%;
-    text-align: center;
-    color: #fff;
-}
-/*Fim Footer contato*/
-/*Fim do Conteudo*/
 
 /*Mobile*/
 @media screen and (max-width: 880px) {
@@ -162,7 +94,7 @@ footer{
         padding-bottom: 1.2rem;
     }
     .mobile .nav-item:hover{
-        background-color: #0D2A48;
+        background-color: #8b4a709f;
     }
     .open{
         display: block;
