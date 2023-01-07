@@ -3,6 +3,7 @@
     padding: 0;
     margin: 0;
     font-family: 'Merriweather', sans-serif;
+    color: #fff;
 }
 
 .row{
@@ -16,10 +17,24 @@
     width: 33.33333333%;
 }
 
+.conteudo{
+    padding: 0.3rem 7rem;
+    text-align: justify;
+    font-size: 16px;
+    background: linear-gradient(90deg, #000000 0%, #FF0000 25%, #ff0022 50%, #000000 100%);
+    background-blend-mode: overlay, color, overlay, difference, color-dodge, difference, normal;
+}
+.box{
+    background: #00000069;
+    border-radius: 10px;
+    padding: 0.3rem 1rem;
+    text-shadow: 2px 1px rgba(31, 30, 30, 0.863);
+    box-shadow: 3px 5px 10px rgb(83, 74, 74);
+}
+
 /*Menu*/
 header{
-    background: linear-gradient(45deg, #000000 0%, #FF0000 25%, #ff006a 50%, #000000 100%);
-    background-blend-mode: overlay, color, overlay, difference, color-dodge, difference, normal;
+    background: linear-gradient(45deg, #000000 0%, #FF0000 25%, #ff0022 50%, #000000 100%);
     box-shadow: 0 3px 10px #8b4a70;
     top: 0;
     position: sticky;
@@ -30,14 +45,13 @@ header{
 .nav-bar{
     display: flex;
     justify-content: space-between;
-    padding: 0rem 5rem;
+    padding: 0rem 7rem;
 }
 .logo{
     display: flex;
     align-items: center;
 }
 .logo a{
-    color: #fff;
     text-decoration: none;
 }
 .nav-list{
@@ -58,7 +72,6 @@ header{
 .nav-link{
     text-decoration: none;
     font-size: 1.15rem;
-    color: #fff;
 }
 .mobile-icon{
     display: none;
@@ -70,18 +83,17 @@ header{
 /*Capa*/
 .capa{
     height: 91.5vh;
-    padding: 0rem 5rem;
-    color: #fff;
-    text-shadow: 2px 1px rgba(31, 30, 30, 0.863);
-    text-align: center;
-    background: linear-gradient(120deg, #FF0000 0%, #4f3cc7 100%),
-    linear-gradient(-120deg, #ff004c 0%, #208200 100%),
+    padding: 0rem 0rem;
+    background: linear-gradient(120deg, #FF0000 0%, #2400FF 100%),
+    linear-gradient(120deg, #ff0022 0%, #208200 100%),
     linear-gradient(130deg, #00F0FF 0%, #000000 100%),
     radial-gradient(110% 140% at 15% 90%, #ffffff 0%, #1700A4 100%),
     radial-gradient(100% 100% at 50% 0%, #AD00FF 0%, #00FFE0 100%),
     radial-gradient(100% 100% at 50% 0%, #00FFE0 0%, #7300A9 80%),
     linear-gradient(30deg, #7ca304 0%, #2200AA 100%);
     background-blend-mode: overlay, color, overlay, difference, color-dodge, difference, normal;
+    text-shadow: 2px 1px rgba(31, 30, 30, 0.863);
+    text-align: center;
 }
 .nome{
     margin-top: 15rem;
@@ -92,7 +104,24 @@ header{
     margin-top: 8rem;
     box-shadow: 3px 5px 10px rgb(170, 145, 145);
 }
-
+/*Sobre*/
+#sobre{
+    margin-top: 2.9rem;
+}
+.titulo{
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+.titulo2{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 18px;
+}
+.formacao{
+    text-align: center;
+}
 /*Mobile*/
 @media screen and (max-width: 880px){
     /*Menu Mobile*/
@@ -135,7 +164,7 @@ header{
 @media screen and (max-width: 735px){
     /*Capa*/
     .nome{
-        font-size: 27px;
+        font-size: 26px;
     }
     .area-profissinal{
         font-size: 14px;
@@ -151,7 +180,7 @@ header{
     }
     .nome{
         font-size: 22px;
-        margin-top: 2rem;
+        margin-top: 10rem;
     }
     .area-profissinal{
         font-size: 13px;
