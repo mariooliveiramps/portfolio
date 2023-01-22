@@ -82,16 +82,16 @@
             <h2 class="titulo2">Portfolio</h2>
             <div class="row">
                 <div class="col-33">
-                    <img src="./assets/img/p1.jpg" width="92%" alt="">
-                    <p>Projeto 01</p>
+                    <img src="./assets/img/p1.jpg" width="92%" alt="Imagen do Projeto 01">
+                    <button id="open-modal">Projeto 01</button>
                 </div>
                 <div class="col-33">
-                    <img src="./assets/img/p2.jpg" width="92%" alt="">
-                    <p>Projeto 02</p>
+                    <img src="./assets/img/p2.jpg" width="92%" alt="Imagen do Projeto 02">
+                    <button id="open-modal2">Projeto 02</button>
                 </div>
                 <div class="col-33">
-                    <img src="./assets/img/p3.jpg" width="92%" alt="">
-                    <p>Projeto 03</p>
+                    <img src="./assets/img/p3.jpg" width="92%" alt="Imagen do Projeto 02">
+                    <button id="open-modal3">Projeto 03</button>
                 </div>
             </div>
         </section>
@@ -138,6 +138,73 @@
             <p>Copyright® Mário Oliveira.</p>
         </div>
     </footer>
+
+    <!--Modais-->
+    <!--Modal 1-->
+    <div id="fade" class="hide"></div>
+    <div id="modal" class="hide">
+        <div class="modal-header">
+            <h2>Projeto 01 - Meu primeiro site</h2>
+            <button id="close-modal">Fechar</button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <img src="./assets/gif/p1.gif" width="100%" alt="Gif do projeto 01">
+            </div>
+            <div class="row">
+                <p>
+                    Esse projeto foi o primeiro site que desenvolvi em 2020, foram três semanas aprendendo e tambèm axuliando outras pessoas
+                    quando tinham duvidas.
+                </p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="https://github.com/mariooliveiramps/meu-primeiro-site" target="_blank" class="icon-modal"><i class="fa-brands fa-github"></i></a>
+        </div>
+    </div>
+    <!--Modal 2-->
+    <div id="fade2" class="hide"></div>
+    <div id="modal2" class="hide">
+        <div class="modal-header">
+            <h2>Projeto 02 - InovArt</h2>
+            <button id="close-modal2">Fechar</button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <img src="./assets/gif/p2.gif" width="100%" alt="Gif do projeto 02">
+            </div>
+            <div class="row">
+                <p>
+                    Esse projeto é uma landingpage de um escritório de projetos de construção civil.
+                </p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="https://github.com/mariooliveiramps/inovart" target="_blank" class="icon-modal"><i class="fa-brands fa-github"></i></a>
+        </div>
+    </div>
+    <!--Modal 3-->
+    <div id="fade3" class="hide"></div>
+    <div id="modal3" class="hide">
+        <div class="modal-header">
+            <h2>Projeto 03 - Controle de Funcionários</h2>
+            <button id="close-modal3">Fechar</button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <img src="./assets/gif/p3.gif" width="100%" alt="Gif do projeto 03">
+            </div>
+            <div class="row">
+                <p>
+                    Esse projeto tem como objetivo, cadastrar, listar e remover funcionários do banco de dados.
+                    No momento ainda está em desenvolvimento.
+                </p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="https://github.com/mariooliveiramps/projetos/tree/master/cadastro" target="_blank" class="icon-modal"><i class="fa-brands fa-github"></i></a>
+        </div>
+    </div>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
