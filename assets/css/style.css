@@ -58,9 +58,8 @@ header{
 /*Home*/
 #home{
     background-image: -webkit-linear-gradient( -45deg, #000000 0%, #2F4550 30%, #586F7C 100%);
-    height: 100vh;
+    height: 95vh;
     text-align: center;
-    /*padding: 0rem 5rem;*/
 }
 .welcome{
     color: white;
@@ -118,7 +117,7 @@ header{
 .titulo2{
     color: black;
     font-size: 160%;
-    padding: 10px 0;
+    padding: 15px 0 35px 0;
     text-align: center;
 }
 .sub-titulo2{
@@ -129,6 +128,9 @@ header{
 }
 .formacao{
     text-align: center;
+}
+section{
+    padding-bottom: 20px;
 }
 
 /*Sobre*/
@@ -141,6 +143,26 @@ header{
 /*Habilidades*/
 .img-hb{
     width: 60%;
+}
+/*Footer*/
+footer{
+    background-image: -webkit-linear-gradient( -45deg, #000000 0%, #2F4550 30%, #586F7C 100%);
+    height: 150px;
+    text-align: center;
+}
+i{
+    padding-top: 3.5rem;
+    font-size: 35px;
+    width: 80px;
+}
+.contato a{
+    color: #000000;
+    text-decoration: none;
+}
+.copyright{
+    position: relative;
+    top: 25%;
+    font-size: 13px;
 }
 @media screen and (max-width: 866px) {
     /*Menu Mobile*/
