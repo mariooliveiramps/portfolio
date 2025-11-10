@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Painel</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <style>
+    body { background: #000; color: #fff; }
+    .panel { max-width: 980px; margin: 60px auto; padding: 2rem; background: rgba(124,58,237,0.10); border-radius: 12px; box-shadow: 0 10px 30px rgba(124,58,237,0.45); }
+    .panel h2 { text-align: center; margin-bottom: 1.5rem; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .card { background: rgba(124,58,237,0.12); padding: 1rem; border-radius: 10px; box-shadow: 0 10px 20px rgba(124,58,237,0.35); }
+    .card h3 { margin-bottom: 1rem; }
+    .row { display: flex; gap: 0.75rem; margin-bottom: 0.75rem; }
+    input, textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #3b3b3b; background: #0b0816; color: #fff; }
+    textarea { min-height: 100px; }
+    .btn { padding: 10px 16px; border-radius: 8px; border: none; cursor: pointer; }
+    .btn-primary { background: #7c3aed; color: #fff; }
+    .btn-secondary { background: #162447; color: #fff; }
+    .list { margin-top: 0.75rem; }
+    .list-item { display: flex; justify-content: space-between; align-items: center; background: #0b0816; padding: 8px 12px; border-radius: 8px; margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h2>Painel Administrativo</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Identidade</h3>
+        <div class="row"><input id="adminName" placeholder="Nome" /></div>
+        <div class="row"><input id="adminRole" placeholder="Desenvolvedor" /></div>
+        <div class="row"><input id="homePhotoInput" type="file" accept="image/*" /></div>
+        <button class="btn btn-primary" id="saveIdentity">Salvar Identidade</button>
+      </div>
+
+      <div class="card">
+        <h3>Sobre Mim</h3>
+        <div class="row"><textarea id="adminAbout" placeholder="Sobre mim"></textarea></div>
+        <button class="btn btn-primary" id="saveAbout">Salvar Sobre</button>
+      </div>
+
+      <div class="card">
+        <h3>Contato</h3>
+        <div class="row"><input id="adminEmail" placeholder="Email" /></div>
+        <div class="row"><input id="adminPhone" placeholder="Telefone" /></div>
+        <div class="row"><input id="adminLinkedin" placeholder="LinkedIn URL" /></div>
+        <div class="row"><input id="adminGithub" placeholder="GitHub URL" /></div>
+        <button class="btn btn-primary" id="saveContact">Salvar</button>
+      </div>
+
+      <div class="card">
+        <h3>Projetos</h3>
+        <div class="row"><input id="projTitle" placeholder="Título" /></div>
+        <div class="row"><textarea id="projDesc" placeholder="Descrição"></textarea></div>
+        <div class="row"><input id="projTech" placeholder="Tecnologias (vírgula)" /></div>
+        <div class="row"><input id="projImages" type="file" multiple accept="image/*" /></div>
+        <button class="btn btn-secondary" id="addProject">Adicionar</button>
+        <div class="list" id="projectsList"></div>
+      </div>
+
+      <div class="card">
+        <h3>Skills</h3>
+        <div class="row"><input id="skillName" placeholder="Skill" /></div>
+        <div class="row"><input id="skillLevel" placeholder="Nível (1-100)" type="number" /></div>
+        <div class="row"><input id="skillImage" type="file" accept="image/*" /></div>
+        <button class="btn btn-secondary" id="addSkill">Adicionar</button>
+        <div class="list" id="skillsList"></div>
+      </div>
+    </div>
+    <div style="margin-top:1.5rem; display:flex; gap:0.75rem; justify-content: center;">
+      <a class="btn btn-secondary" href="../index.html">Voltar ao Portfólio</a>
+      <button class="btn btn-secondary" id="logout">Sair</button>
+    </div>
+  </div>
+
+  <script>
+    // Protege painel
+    if (localStorage.getItem('site.auth') !== 'true') {
+      window.location.href = './login.html';
+    }
+
+    const db = {
+      get: () => JSON.parse(localStorage.getItem('site.data') || '{}'),
+      set: (obj) => localStorage.setItem('site.data', JSON.stringify(obj)),
+    };
+
+    const state = db.get();
+    // Carrega valores iniciais
+    document.getElementById('adminName').value = state.name || '';
+    document.getElementById('adminRole').value = state.role || '';
+    document.getElementById('adminAbout').value = state.about || '';
+    document.getElementById('adminEmail').value = state.email || '';
+    document.getElementById('adminPhone').value = state.phone || '';
+    document.getElementById('adminLinkedin').value = state.linkedin || '';
+    document.getElementById('adminGithub').value = state.github || '';
+
+    const uploadFiles = async (files) => {
+      const arr = Array.from(files || []);
+      const results = [];
+      for (const file of arr) {
+        const res = await fetch(`/upload?filename=${encodeURIComponent(file.name)}`, { method: 'POST', body: file });
+        if (!res.ok) throw new Error('Falha no upload de imagem');
+        const data = await res.json();
+        results.push(data.path);
+      }
+      return results;
+    };
+
+    const renderList = () => {
+      const projectsList = document.getElementById('projectsList');
+      const skillsList = document.getElementById('skillsList');
+      projectsList.innerHTML = '';
+      skillsList.innerHTML = '';
+      (state.projects || []).forEach((p, idx) => {
+        const el = document.createElement('div');
+        el.className = 'list-item';
+        const count = (p.images || []).length;
+        el.innerHTML = `<span>${p.title} ${count ? `( ${count} fotos )` : ''}</span><div style="display:flex; gap:6px;"><button data-i="${idx}" class="btn btn-secondary add-images">Adicionar Fotos</button><button data-i="${idx}" class="btn btn-secondary clear-images">Limpar Fotos</button><button data-i="${idx}" class="btn btn-secondary del-project">Remover</button></div>`;
+        projectsList.appendChild(el);
+      });
+      (state.skills || []).forEach((s, idx) => {
+        const el = document.createElement('div');
+        el.className = 'list-item';
+        el.innerHTML = `<span>${s.name} (${s.level})</span><div><button data-i="${idx}" class="btn btn-secondary del-skill">Remover</button></div>`;
+        skillsList.appendChild(el);
+      });
+    };
+    renderList();
+
+    document.getElementById('saveIdentity').addEventListener('click', async () => {
+      state.name = document.getElementById('adminName').value.trim();
+      state.role = document.getElementById('adminRole').value.trim();
+      const homePhotoInput = document.getElementById('homePhotoInput');
+      if (homePhotoInput && homePhotoInput.files && homePhotoInput.files.length) {
+        const [photoPath] = await uploadFiles(homePhotoInput.files);
+        state.homePhoto = photoPath;
+      }
+      db.set(state);
+      alert('Identidade salva!');
+    });
+    document.getElementById('saveAbout').addEventListener('click', () => {
+      state.about = document.getElementById('adminAbout').value.trim();
+      db.set(state);
+      alert('Sobre salvo!');
+    });
+    document.getElementById('saveContact').addEventListener('click', () => {
+      state.email = document.getElementById('adminEmail').value.trim();
+      state.phone = document.getElementById('adminPhone').value.trim();
+      state.linkedin = document.getElementById('adminLinkedin').value.trim();
+      state.github = document.getElementById('adminGithub').value.trim();
+      db.set(state);
+      alert('Contato salvo!');
+    });
+    document.getElementById('addProject').addEventListener('click', async () => {
+      const title = document.getElementById('projTitle').value.trim();
+      const desc = document.getElementById('projDesc').value.trim();
+      const tech = document.getElementById('projTech').value.trim();
+      const imagesInput = document.getElementById('projImages');
+      if (!title) return alert('Informe o título');
+      const images = imagesInput && imagesInput.files && imagesInput.files.length ? await uploadFiles(imagesInput.files) : [];
+      state.projects = state.projects || [];
+      state.projects.push({ title, desc, tech: tech.split(',').map(t => t.trim()).filter(Boolean), images });
+      db.set(state);
+      renderList();
+      document.getElementById('projTitle').value = '';
+      document.getElementById('projDesc').value = '';
+      document.getElementById('projTech').value = '';
+      if (imagesInput) imagesInput.value = '';
+    });
+
+    const hiddenEditImagesInput = document.createElement('input');
+    hiddenEditImagesInput.type = 'file';
+    hiddenEditImagesInput.accept = 'image/*';
+    hiddenEditImagesInput.multiple = true;
+    hiddenEditImagesInput.style.display = 'none';
+    document.body.appendChild(hiddenEditImagesInput);
+
+    document.getElementById('projectsList').addEventListener('click', async (e) => {
+      if (e.target.classList.contains('del-project')) {
+        const i = parseInt(e.target.getAttribute('data-i'), 10);
+        state.projects.splice(i, 1);
+        db.set(state);
+        renderList();
+      }
+      if (e.target.classList.contains('clear-images')) {
+        const i = parseInt(e.target.getAttribute('data-i'), 10);
+        state.projects[i].images = [];
+        db.set(state);
+        renderList();
+      }
+      if (e.target.classList.contains('add-images')) {
+        const i = parseInt(e.target.getAttribute('data-i'), 10);
+        hiddenEditImagesInput.onchange = async () => {
+          const newImgs = await uploadFiles(hiddenEditImagesInput.files);
+          state.projects[i].images = (state.projects[i].images || []).concat(newImgs);
+          db.set(state);
+          renderList();
+          hiddenEditImagesInput.value = '';
+        };
+        hiddenEditImagesInput.click();
+      }
+    });
+
+    document.getElementById('addSkill').addEventListener('click', async () => {
+      const name = document.getElementById('skillName').value.trim();
+      const level = parseInt(document.getElementById('skillLevel').value, 10) || 0;
+      const imgInput = document.getElementById('skillImage');
+      if (!name) return alert('Informe o nome da skill');
+      const [image] = imgInput && imgInput.files && imgInput.files.length ? await uploadFiles(imgInput.files) : [null];
+      state.skills = state.skills || [];
+      state.skills.push({ name, level, image });
+      db.set(state);
+      renderList();
+      document.getElementById('skillName').value = '';
+      document.getElementById('skillLevel').value = '';
+      if (imgInput) imgInput.value = '';
+    });
+    document.getElementById('skillsList').addEventListener('click', (e) => {
+      if (e.target.classList.contains('del-skill')) {
+        const i = parseInt(e.target.getAttribute('data-i'), 10);
+        state.skills.splice(i, 1);
+        db.set(state);
+        renderList();
+      }
+    });
+
+    document.getElementById('logout').addEventListener('click', () => {
+      localStorage.removeItem('site.auth');
+      window.location.href = './login.html';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Login</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <style>
+    body { background: #000; color: #fff; }
+    .login-container { max-width: 420px; margin: 120px auto; background: rgba(124,58,237,0.15); padding: 2rem; border-radius: 12px; box-shadow: 0 20px 40px rgba(124,58,237,0.65); }
+    .login-container h2 { margin-bottom: 1rem; text-align: center; }
+    .form-group { margin-bottom: 1rem; }
+    label { display: block; margin-bottom: 0.5rem; }
+    input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #3b3b3b; background: #0b0816; color: #fff; }
+    .btn-primary { width: 100%; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login Admin</h2>
+    <div class="form-group">
+      <label for="username">Usuário</label>
+      <input id="username" type="text" placeholder="admin" />
+    </div>
+    <div class="form-group">
+      <label for="password">Senha</label>
+      <input id="password" type="password" placeholder="••••••" />
+    </div>
+    <button id="loginBtn" class="btn btn-primary">Entrar</button>
+    <div style="margin-top:1rem; text-align:center;">
+      <a href="../index.html" class="btn btn-secondary">Voltar ao Portfólio</a>
+    </div>
+  </div>
+  <script>
+    document.getElementById('loginBtn').addEventListener('click', () => {
+      const u = document.getElementById('username').value.trim();
+      const p = document.getElementById('password').value.trim();
+      // Credenciais simples (pode ser trocado depois)
+      if (u === 'admin' && p.length >= 4) {
+        localStorage.setItem('site.auth', 'true');
+        window.location.href = './panel.html';
+      } else {
+        alert('Credenciais inválidas. Use usuário admin e uma senha com 4+ caracteres.');
+      }
+    });
+  </script>
+</body>
+</html>
